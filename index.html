@@ -40,42 +40,48 @@
 
     <!-- 2. HEADER PRINCIPAL -->
     <header class="bg-white sticky top-0 z-50 shadow-sm">
-        <div class="max-w-[1280px] mx-auto px-4 py-3 lg:py-4 flex items-center justify-between gap-4">
+        <div class="max-w-[1280px] mx-auto px-3 py-2.5 lg:px-4 lg:py-4 flex items-center justify-between gap-3 lg:gap-5">
             
-            <!-- Logo y Menú Móvil -->
-            <div class="flex items-center gap-3">
-                <button class="lg:hidden text-gray-700 hover:text-[#4a148c]">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-                <a href="/" class="flex items-center">
+            <!-- Menú Móvil -->
+            <button class="lg:hidden text-gray-700 hover:text-[#4a148c] shrink-0">
+                <i data-lucide="menu" class="w-7 h-7 stroke-[2]"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="/" class="flex items-center shrink-0">
+                <!-- Ícono compacto para móvil -->
+                <div class="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#4a148c] to-[#d5006d] text-white flex items-center justify-center font-black italic text-lg shadow-sm">
+                    A
+                </div>
+                <!-- Logo completo para escritorio -->
+                <div class="hidden lg:flex items-center">
                     <span class="text-xl lg:text-3xl font-black italic text-[#4a148c] tracking-tighter">
                         ARELYSHOP
                     </span>
                     <span class="text-xl lg:text-3xl font-black text-[#d5006d] ml-0.5">&gt;</span>
-                </a>
-            </div>
-
-            <!-- Barra de Búsqueda -->
-            <div class="flex-1 max-w-2xl relative order-last lg:order-none w-full lg:w-auto mt-3 lg:mt-0 absolute lg:relative left-0 top-full lg:top-auto px-4 lg:px-0 bg-white lg:bg-transparent pb-3 lg:pb-0 shadow-sm lg:shadow-none">
-                <div class="relative w-full">
-                    <input type="text" placeholder="Fijate en Arelyshop" class="w-full bg-gray-100 border border-transparent rounded-md py-2.5 px-4 lg:py-2.5 pl-10 lg:pl-4 lg:pr-10 focus:outline-none focus:border-[#4a148c] focus:bg-white transition-colors text-sm"/>
-                    <i data-lucide="search" class="absolute left-3 lg:left-auto lg:right-3 top-2.5 lg:top-2.5 w-5 h-5 text-gray-400"></i>
                 </div>
+            </a>
+
+            <!-- Barra de Búsqueda unificada en una sola línea -->
+            <div class="flex-1 w-full relative">
+                <input 
+                    type="text" 
+                    placeholder="Fijate en Arelyshop" 
+                    class="w-full bg-white lg:bg-gray-100 border border-[#d6cce5] lg:border-transparent rounded-lg py-2 pl-9 pr-4 lg:py-2.5 lg:pl-10 lg:pr-10 focus:outline-none focus:border-[#4a148c] focus:ring-1 focus:ring-[#4a148c] focus:bg-white transition-colors text-[13px] sm:text-sm shadow-sm lg:shadow-none placeholder-gray-500"
+                />
+                <i data-lucide="search" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 lg:w-5 lg:h-5 text-gray-500 lg:text-gray-400"></i>
             </div>
 
             <!-- Usuario y Carrito -->
-            <div class="flex items-center gap-6 shrink-0">
+            <div class="flex items-center gap-4 lg:gap-6 shrink-0">
                 <div class="hidden lg:flex items-center gap-2 text-sm text-gray-700 cursor-pointer hover:text-[#4a148c]">
                     <i data-lucide="user" class="w-5 h-5"></i> Mi cuenta
                 </div>
-                <button class="text-gray-700 hover:text-[#4a148c] relative">
-                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                <button class="text-gray-700 hover:text-[#4a148c] relative shrink-0">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 stroke-[2]"></i>
                 </button>
             </div>
         </div>
-        
-        <!-- Espaciador para móvil por la barra de búsqueda absoluta -->
-        <div class="h-[60px] lg:hidden"></div>
     </header>
 
     <!-- 3. BARRA DE UBICACIÓN -->
