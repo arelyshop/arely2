@@ -54,51 +54,54 @@
 
     <!-- 2. HEADER PRINCIPAL -->
     <header class="bg-[#2d0c5e]/95 backdrop-blur-md sticky top-0 z-50 border-b border-white/10 transition-all duration-300">
-        <div class="max-w-[1280px] mx-auto px-2 sm:px-5 lg:px-8 py-3 lg:py-4 grid grid-cols-[1fr_auto] lg:flex lg:flex-nowrap items-center lg:justify-between gap-y-3 gap-x-1 lg:gap-5">
+        <!-- Aumentamos el padding lateral a px-4 y volvemos a flex-wrap para que la búsqueda baje de línea en móvil -->
+        <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-4 flex flex-wrap lg:flex-nowrap items-center justify-between gap-y-3 lg:gap-5">
             
             <!-- 1. Menú Móvil y Logo (Izquierda) -->
-            <div class="flex items-center gap-1.5 sm:gap-3 order-1 min-w-0">
+            <div class="flex items-center gap-2 sm:gap-3 order-1">
                 <button class="lg:hidden text-white hover:text-[#d5006d] shrink-0 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-7 h-7 sm:w-8 sm:h-8" fill="currentColor"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
                 </button>
 
-                <a href="/" class="flex items-center shrink-0 group min-w-0">
-                    <span class="text-[15px] sm:text-xl lg:text-3xl font-black italic text-white tracking-tighter truncate group-hover:text-gray-100 transition-colors">
+                <a href="/" class="flex items-center shrink-0 group">
+                    <!-- Se eliminó el truncate y se restauró el tamaño del logo -->
+                    <span class="text-[18px] sm:text-xl lg:text-3xl font-black italic text-white tracking-tighter group-hover:text-gray-100 transition-colors">
                         ARELYSHOP
                     </span>
-                    <span class="text-[15px] sm:text-xl lg:text-3xl font-black text-[#d5006d] ml-0.5 group-hover:translate-x-1 transition-transform shrink-0">&gt;</span>
+                    <span class="text-[18px] sm:text-xl lg:text-3xl font-black text-[#d5006d] ml-0.5 group-hover:translate-x-1 transition-transform shrink-0">&gt;</span>
                 </a>
             </div>
 
             <!-- 2. Usuario y Carrito -->
-            <div class="flex items-center gap-1.5 sm:gap-4 lg:gap-8 shrink-0 text-white order-2 lg:order-3">
+            <div class="flex items-center gap-3 sm:gap-4 lg:gap-8 shrink-0 text-white order-2 lg:order-3">
                 
                 <!-- Ubicación de la tienda -->
-                <a href="https://www.google.com/maps/place/17%C2%B049'00.4%22S+63%C2%B010'18.8%22W" target="_blank" class="flex items-center gap-1 lg:gap-2 cursor-pointer group">
-                    <div class="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                <a href="https://www.google.com/maps/place/17%C2%B049'00.4%22S+63%C2%B010'18.8%22W" target="_blank" class="flex items-center gap-1.5 lg:gap-2 cursor-pointer group">
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                         <svg viewBox="0 0 6.35 6.35" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-white group-hover:text-red-400 transition-colors" fill="currentColor">
                             <path d="m 3.1757812,0.26367184 c -1.1658682,6e-8 -2.1171876,0.95131916 -2.1171874,2.11718746 0,0.7849302 0.4969305,1.652624 0.9707031,2.3632813 0.4737725,0.7106571 0.9472656,1.2499999 0.9472656,1.2499999 a 0.26460981,0.26460981 0 0 0 0.3847656,0.013671 c 0,0 0.4797541,-0.4783338 0.9570312,-1.1601563 0.4772771,-0.6818225 0.9726562,-1.5701539 0.9726562,-2.4667968 0,-1.1658672 -0.949366,-2.11718646 -2.1152343,-2.11718656 z m 0,0.52929688 c 0.8798855,0 1.5859378,0.70800518 1.5859378,1.58789058 0,0.690856 -0.4281893,1.5229726 -0.8769533,2.1640625 C 3.534083,5.0458955 3.3198241,5.2510111 3.1835938,5.3945312 3.0487931,5.2346961 2.8256176,4.986472 2.46875,4.4511718 2.0164815,3.7727706 1.5878907,2.9188448 1.5878906,2.3808593 1.5878905,1.5009739 2.2958959,0.79296877 3.1757812,0.79296872 Z" />
                             <path d="m 3.1757812,1.3222655 c -0.5813668,10e-8 -1.0585937,0.4772269 -1.0585937,1.0585938 0,0.5813669 0.4772269,1.0585937 1.0585937,1.0585937 0.581367,0 1.0566407,-0.4772268 1.0566407,-1.0585937 0,-0.5813669 -0.4752737,-1.0585938 -1.0566407,-1.0585938 z m 0,0.5292969 c 0.295384,0 0.529297,0.2339129 0.529297,0.5292969 0,0.295384 -0.233913,0.5292969 -0.529297,0.5292969 -0.2953839,0 -0.5292968,-0.233913 -0.5292968,-0.5292969 0,-0.295384 0.2339129,-0.5292969 0.5292968,-0.5292969 z" />
                         </svg>
                     </div>
-                    <!-- Se oculta el texto en móviles (hidden) y se muestra en PC (lg:flex) -->
-                    <div class="hidden lg:flex flex-col text-left justify-center min-w-0">
-                        <span class="text-[8px] sm:text-[11px] text-gray-300 font-medium leading-tight whitespace-nowrap">Ubicación de</span>
-                        <span class="text-[9px] sm:text-[13px] font-bold text-white leading-tight whitespace-nowrap">Nuestra Tienda</span>
+                    <!-- Se oculta en móviles para ahorrar espacio, visible en PC -->
+                    <div class="hidden lg:flex flex-col text-left justify-center">
+                        <span class="text-[11px] text-gray-300 font-medium leading-tight whitespace-nowrap">Ubicación de</span>
+                        <span class="text-[13px] font-bold text-white leading-tight whitespace-nowrap">Nuestra Tienda</span>
                     </div>
                 </a>
 
                 <!-- WhatsApp -->
-                <a href="https://wa.me/59167500044" target="_blank" class="flex items-center gap-1 lg:gap-2 cursor-pointer group">
-                    <div class="relative w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                <a href="https://wa.me/59167500044" target="_blank" class="flex items-center gap-1.5 lg:gap-2 cursor-pointer group">
+                    <div class="relative w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                         <div class="absolute inset-0 bg-[#25D366] blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-[#25D366] relative z-10 scale-[1.05]">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M3.50002 12C3.50002 7.30558 7.3056 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C10.3278 20.5 8.77127 20.0182 7.45798 19.1861C7.21357 19.0313 6.91408 18.9899 6.63684 19.0726L3.75769 19.9319L4.84173 17.3953C4.96986 17.0955 4.94379 16.7521 4.77187 16.4751C3.9657 15.176 3.50002 13.6439 3.50002 12ZM12 1.5C6.20103 1.5 1.50002 6.20101 1.50002 12C1.50002 13.8381 1.97316 15.5683 2.80465 17.0727L1.08047 21.107C0.928048 21.4637 0.99561 21.8763 1.25382 22.1657C1.51203 22.4552 1.91432 22.5692 2.28599 22.4582L6.78541 21.1155C8.32245 21.9965 10.1037 22.5 12 22.5C17.799 22.5 22.5 17.799 22.5 12C22.5 6.20101 17.799 1.5 12 1.5ZM14.2925 14.1824L12.9783 15.1081C12.3628 14.7575 11.6823 14.2681 10.9997 13.5855C10.2901 12.8759 9.76402 12.1433 9.37612 11.4713L10.2113 10.7624C10.5697 10.4582 10.6678 9.94533 10.447 9.53028L9.38284 7.53028C9.23954 7.26097 8.98116 7.0718 8.68115 7.01654C8.38113 6.96129 8.07231 7.046 7.84247 7.24659L7.52696 7.52195C6.76823 8.18414 6.3195 9.2723 6.69141 10.3741C7.07698 11.5163 7.89983 13.314 9.58552 14.9997C11.3991 16.8133 13.2413 17.5275 14.3186 17.8049C15.1866 18.0283 16.008 17.7288 16.5868 17.2572L17.1783 16.7752C17.4313 16.5691 17.5678 16.2524 17.544 15.9269C17.5201 15.6014 17.3389 15.308 17.0585 15.1409L15.3802 14.1409C15.0412 13.939 14.6152 13.9552 14.2925 14.1824Z" fill="currentColor"></path>
                         </svg>
                     </div>
-                    <div class="flex flex-col text-left justify-center min-w-0">
-                        <span class="text-[8px] sm:text-[11px] text-gray-300 font-medium leading-tight whitespace-nowrap">Asesoría online</span>
-                        <span class="text-[9px] sm:text-[13px] font-bold text-white leading-tight whitespace-nowrap">por WhatsApp!</span>
+                    <!-- Visible tanto en móvil como en PC -->
+                    <div class="flex flex-col text-left justify-center">
+                        <span class="text-[9px] sm:text-[11px] text-gray-300 font-medium leading-tight whitespace-nowrap">Asesoría online</span>
+                        <span class="text-[10px] sm:text-[13px] font-bold text-white leading-tight whitespace-nowrap">por WhatsApp!</span>
                     </div>
                 </a>
 
@@ -109,8 +112,8 @@
                 </button>
             </div>
 
-            <!-- 3. Barra de Búsqueda (Estilo "píldora") -->
-            <div class="col-span-2 lg:col-span-1 w-full lg:w-auto lg:flex-1 lg:max-w-[800px] flex items-center bg-white rounded-full p-1 lg:p-1.5 shadow-sm focus-within:ring-2 focus-within:ring-[#d5006d] transition-all order-3 lg:order-2 lg:mx-6">
+            <!-- 3. Barra de Búsqueda (Al ser w-full bajará a la segunda línea en móvil) -->
+            <div class="w-full lg:w-auto lg:flex-1 lg:max-w-[800px] flex items-center bg-white rounded-full p-1 lg:p-1.5 shadow-sm focus-within:ring-2 focus-within:ring-[#d5006d] transition-all order-3 lg:order-2 lg:mx-6 mt-1 lg:mt-0">
                 <input 
                     type="text" 
                     placeholder="¿Qué equipo estás buscando?" 
