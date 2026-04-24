@@ -27,22 +27,11 @@
     <!-- BANNER PROMOCIONAL SUPERIOR -->
     <div class="w-full bg-[#2d0c5e] flex justify-center border-b border-white/10">
         <a href="#" class="block w-full max-w-[1280px]">
-            <img src="https://arelyshop.com/images/banner-escritorio.webp" alt="Banner Promocional" class="w-full h-auto" />
+            <!-- Imagen para Móvil (se oculta en pantallas grandes) -->
+            <img src="https://arelyshop.com/images/banner-movil.webp" alt="Banner Promocional" class="w-full h-auto lg:hidden" />
+            <!-- Imagen para Escritorio (se oculta en pantallas pequeñas) -->
+            <img src="https://arelyshop.com/images/banner-escritorio.webp" alt="Banner Promocional" class="w-full h-auto hidden lg:block" />
         </a>
-    </div>
-
-    <!-- 1. TOP BAR (Solo Escritorio) -->
-    <div class="hidden lg:flex justify-between items-center bg-[#f8f8f8] border-b border-gray-200 text-[11px] px-8 py-1.5 text-gray-600">
-        <div class="flex gap-4">
-            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="truck" class="w-3.5 h-3.5"></i> Seguí tu compra</a>
-            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="wrench" class="w-3.5 h-3.5"></i> Servicio técnico</a>
-            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="store" class="w-3.5 h-3.5"></i> Sucursales</a>
-            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="phone" class="w-3.5 h-3.5"></i> Venta telefónica</a>
-            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Centro de ayuda</a>
-        </div>
-        <div class="flex gap-4 font-semibold text-[#4a148c]">
-            <a href="#">ARELYSHOP créditos</a>
-        </div>
     </div>
 
     <!-- 2. HEADER PRINCIPAL -->
