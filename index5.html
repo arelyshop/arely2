@@ -36,14 +36,9 @@
         /* Suavidad en toda la página */
         html { scroll-behavior: smooth; }
 
-        /* Animación para el desplegable (ahora controlado por JS) */
+        /* Animación para el desplegable */
         #brands-dropdown {
-            transition: all 0.2s ease-out;
-        }
-        
-        /* Estilo para cuando el menú está abierto y no ser tapado por el scroll */
-        .nav-open {
-            overflow: visible !important;
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
         }
     </style>
 </head>
@@ -126,7 +121,7 @@
     <div class="bg-[#f8f9fa] w-full flex-1">
 
         <!-- 4. NAVEGACIÓN DE PESTAÑAS (Submenú con Toggle por Clic) -->
-        <nav id="submenu-nav" class="bg-white border-b border-gray-200 overflow-x-auto lg:overflow-visible hide-scrollbar shadow-sm relative transition-all">
+        <nav id="submenu-nav" class="bg-white border-b border-gray-200 overflow-x-auto hide-scrollbar shadow-sm relative transition-all">
             <div class="max-w-[1280px] mx-auto px-4 lg:px-8 flex items-center gap-6 lg:gap-8 whitespace-nowrap py-3 text-[14px] font-medium text-gray-700 w-max lg:w-auto">
                 
                 <!-- 1. Categorías -->
@@ -136,14 +131,14 @@
                 </a>
 
                 <!-- 2. Marcas con Desplegable por Clic -->
-                <div class="relative h-full flex items-center">
+                <div class="h-full flex items-center">
                     <button onclick="toggleBrands(event)" class="flex items-center gap-1 text-gray-700 hover:text-[#2d0c5e] transition-colors font-semibold py-1 focus:outline-none">
                         Marcas
                         <svg id="brands-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5 transition-transform duration-300" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                     </button>
                     
-                    <!-- Menú Desplegable -->
-                    <div id="brands-dropdown" class="absolute top-full left-0 w-48 bg-white border border-gray-100 shadow-xl rounded-b-xl z-[60] overflow-hidden py-2 hidden">
+                    <!-- Menú Desplegable (Modificado a Fixed para no romper márgenes) -->
+                    <div id="brands-dropdown" class="fixed w-48 bg-white border border-gray-100 shadow-xl rounded-b-xl z-[100] overflow-hidden py-2 hidden">
                         <a href="#" class="block px-4 py-2.5 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">NETAC</a>
                         <a href="#" class="block px-4 py-2.5 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">SIN MARCA</a>
                         <a href="#" class="block px-4 py-2.5 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">TP-LINK</a>
@@ -305,41 +300,67 @@
     <script>
         lucide.createIcons();
 
-        // Lógica para el menú desplegable de Marcas
-        function toggleBrands(event) {
-            event.stopPropagation(); // Evitar que el clic se propague al documento
+        // Función para cerrar el menú de marcas si está abierto
+        function closeBrandsDropdown() {
             const dropdown = document.getElementById('brands-dropdown');
             const icon = document.getElementById('brands-icon');
-            const nav = document.getElementById('submenu-nav');
+            if (!dropdown.classList.contains('hidden')) {
+                dropdown.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Lógica actualizada para el menú desplegable de Marcas
+        function toggleBrands(event) {
+            event.stopPropagation();
+            const dropdown = document.getElementById('brands-dropdown');
+            const icon = document.getElementById('brands-icon');
+            const button = event.currentTarget;
 
             const isOpen = !dropdown.classList.contains('hidden');
 
             if (isOpen) {
-                // Cerrar
-                dropdown.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-                nav.classList.remove('nav-open');
+                closeBrandsDropdown();
             } else {
-                // Abrir
+                // Obtenemos la posición exacta del botón en la pantalla
+                const rect = button.getBoundingClientRect();
+                
+                // Aseguramos que el menú no se salga por la derecha de la pantalla
+                let leftPos = rect.left;
+                if (leftPos + 192 > window.innerWidth) { // 192px es el ancho del menú (w-48)
+                    leftPos = window.innerWidth - 192 - 16;
+                }
+
+                // Aplicamos posición fija justo debajo del botón
+                dropdown.style.top = `${rect.bottom + 4}px`;
+                dropdown.style.left = `${leftPos}px`;
+                
                 dropdown.classList.remove('hidden');
                 icon.classList.add('rotate-180');
-                nav.classList.add('nav-open');
             }
         }
 
-        // Cerrar al hacer clic fuera del menú
+        // Eventos para cerrar el menú en distintas situaciones y mantener limpio el layout
+        
+        // 1. Al hacer clic fuera
         document.addEventListener('click', function(event) {
             const dropdown = document.getElementById('brands-dropdown');
-            const icon = document.getElementById('brands-icon');
-            const nav = document.getElementById('submenu-nav');
-            const button = event.target.closest('button');
-
+            const button = event.target.closest('button[onclick="toggleBrands(event)"]');
+            
             if (!dropdown.contains(event.target) && !button) {
-                dropdown.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-                nav.classList.remove('nav-open');
+                closeBrandsDropdown();
             }
         });
+
+        // 2. Al hacer scroll en la página
+        window.addEventListener('scroll', closeBrandsDropdown);
+        
+        // 3. Al hacer scroll horizontal en el submenú
+        document.getElementById('submenu-nav').addEventListener('scroll', closeBrandsDropdown);
+        
+        // 4. Al redimensionar la pantalla
+        window.addEventListener('resize', closeBrandsDropdown);
+
     </script>
 </body>
 </html>
