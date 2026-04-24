@@ -26,11 +26,12 @@
 
     <!-- BANNER PROMOCIONAL SUPERIOR -->
     <div class="w-full bg-[#2d0c5e] flex justify-center border-b border-white/10">
-        <a href="#" class="block w-full max-w-[1280px]">
+        <!-- Eliminamos max-w-[1280px] para que ocupe todo el ancho -->
+        <a href="#" class="block w-full">
             <!-- Imagen para Móvil (se oculta en pantallas grandes) -->
-            <img src="https://arelyshop.com/images/banner-movil.webp" alt="Banner Promocional" class="w-full h-auto lg:hidden" />
+            <img src="https://arelyshop.com/images/banner-movil.webp" alt="Banner Promocional" class="w-full h-auto lg:hidden object-cover" />
             <!-- Imagen para Escritorio (se oculta en pantallas pequeñas) -->
-            <img src="https://arelyshop.com/images/banner-escritorio.webp" alt="Banner Promocional" class="w-full h-auto hidden lg:block" />
+            <img src="https://arelyshop.com/images/banner-escritorio.webp" alt="Banner Promocional" class="w-full h-auto hidden lg:block object-cover" />
         </a>
     </div>
 
