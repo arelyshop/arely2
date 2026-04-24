@@ -36,17 +36,14 @@
         /* Suavidad en toda la página */
         html { scroll-behavior: smooth; }
 
-        /* Animación para el desplegable */
-        .dropdown-animate {
-            opacity: 0;
-            transform: translateY(10px);
-            pointer-events: none;
+        /* Animación para el desplegable (ahora controlado por JS) */
+        #brands-dropdown {
             transition: all 0.2s ease-out;
         }
-        .group:hover .dropdown-animate {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        
+        /* Estilo para cuando el menú está abierto y no ser tapado por el scroll */
+        .nav-open {
+            overflow: visible !important;
         }
     </style>
 </head>
@@ -81,6 +78,7 @@
             <!-- 2. Usuario y Carrito -->
             <div class="flex items-center gap-3 sm:gap-4 lg:gap-8 shrink-0 text-white order-2 lg:order-3">
                 
+                <!-- Ubicación de la tienda -->
                 <a href="https://www.google.com/maps/place/17%C2%B049'00.4%22S+63%C2%B010'18.8%22W" target="_blank" class="flex items-center gap-1.5 lg:gap-2 cursor-pointer group">
                     <div class="w-7 h-7 lg:w-8 lg:h-8 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i data-lucide="map-pin" class="w-full h-full stroke-[2] text-white group-hover:text-red-400 transition-colors"></i>
@@ -91,6 +89,7 @@
                     </div>
                 </a>
 
+                <!-- WhatsApp -->
                 <a href="https://wa.me/59167500044" target="_blank" class="flex items-center gap-1.5 lg:gap-2 cursor-pointer group">
                     <div class="relative">
                         <div class="absolute inset-0 bg-[#25D366] blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
@@ -126,10 +125,8 @@
     <!-- WRAPPER PARA FONDO CLARO -->
     <div class="bg-[#f8f9fa] w-full flex-1">
 
-        <!-- 4. NAVEGACIÓN DE PESTAÑAS (Submenú corregido) -->
-        <!-- lg:overflow-visible permite el desplegable en PC, overflow-x-auto permite el scroll en móvil -->
-        <nav class="bg-white border-b border-gray-200 overflow-x-auto lg:overflow-visible hide-scrollbar shadow-sm relative">
-            <!-- w-max en móvil asegura que los items no se amontonen y fuercen el scroll -->
+        <!-- 4. NAVEGACIÓN DE PESTAÑAS (Submenú con Toggle por Clic) -->
+        <nav id="submenu-nav" class="bg-white border-b border-gray-200 overflow-x-auto lg:overflow-visible hide-scrollbar shadow-sm relative transition-all">
             <div class="max-w-[1280px] mx-auto px-4 lg:px-8 flex items-center gap-6 lg:gap-8 whitespace-nowrap py-3 text-[14px] font-medium text-gray-700 w-max lg:w-auto">
                 
                 <!-- 1. Categorías -->
@@ -138,15 +135,15 @@
                     Categorías
                 </a>
 
-                <!-- 2. Marcas -->
-                <div class="relative group h-full flex items-center">
-                    <button class="flex items-center gap-1 text-gray-700 hover:text-[#2d0c5e] transition-colors font-semibold py-1">
+                <!-- 2. Marcas con Desplegable por Clic -->
+                <div class="relative h-full flex items-center">
+                    <button onclick="toggleBrands(event)" class="flex items-center gap-1 text-gray-700 hover:text-[#2d0c5e] transition-colors font-semibold py-1 focus:outline-none">
                         Marcas
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5 group-hover:rotate-180 transition-transform duration-300" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        <svg id="brands-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5 transition-transform duration-300" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                     </button>
                     
                     <!-- Menú Desplegable -->
-                    <div class="absolute top-full left-0 w-48 bg-white border border-gray-100 shadow-xl rounded-b-xl z-[60] dropdown-animate overflow-hidden py-2">
+                    <div id="brands-dropdown" class="absolute top-full left-0 w-48 bg-white border border-gray-100 shadow-xl rounded-b-xl z-[60] overflow-hidden py-2 hidden">
                         <a href="#" class="block px-4 py-2.5 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">NETAC</a>
                         <a href="#" class="block px-4 py-2.5 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">SIN MARCA</a>
                         <a href="#" class="block px-4 py-2.5 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">TP-LINK</a>
@@ -157,13 +154,12 @@
                 
                 <!-- 3. Enlaces del menú central -->
                 <a href="#" class="text-[#2d0c5e] font-semibold relative after:absolute after:bottom-[-12px] after:left-0 after:w-full after:h-[3px] after:bg-[#2d0c5e] after:rounded-t-md">Más Vendidos</a>
-                <a href="#" class="hover:text-[#2d0c5e] transition-colors">Ofertas</a>
+                <a href="#" class="hover:text-[#2d0c5e] transition-colors font-semibold">Ofertas</a>
                 <a href="#" class="text-[#2d0c5e] font-semibold hover:text-[#d5006d] transition-colors">Especial Smart TV</a>
                 <a href="#" class="text-[#2d0c5e] font-semibold hover:text-[#d5006d] transition-colors">Promo MODO</a>
-                <a href="#" class="hover:text-[#2d0c5e] transition-colors">Semana de Herramientas</a>
+                <a href="#" class="hover:text-[#2d0c5e] transition-colors font-semibold">Semana de Herramientas</a>
                 
-                <!-- 4. Enlaces de la derecha -->
-                <div class="flex lg:hidden xl:flex items-center gap-6 ml-auto text-[13px] text-gray-600">
+                <div class="hidden xl:flex items-center gap-6 ml-auto text-[13px] text-gray-600">
                     <a href="#" class="hover:text-[#2d0c5e] transition-colors">Simulá tu Crédito</a>
                     <a href="#" class="hover:text-[#2d0c5e] transition-colors font-medium">Tiendas Oficiales</a>
                     <a href="#" class="hover:text-[#2d0c5e] transition-colors">Vendé en Arelyshop</a>
@@ -306,6 +302,44 @@
         </div>
     </footer>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+
+        // Lógica para el menú desplegable de Marcas
+        function toggleBrands(event) {
+            event.stopPropagation(); // Evitar que el clic se propague al documento
+            const dropdown = document.getElementById('brands-dropdown');
+            const icon = document.getElementById('brands-icon');
+            const nav = document.getElementById('submenu-nav');
+
+            const isOpen = !dropdown.classList.contains('hidden');
+
+            if (isOpen) {
+                // Cerrar
+                dropdown.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                nav.classList.remove('nav-open');
+            } else {
+                // Abrir
+                dropdown.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+                nav.classList.add('nav-open');
+            }
+        }
+
+        // Cerrar al hacer clic fuera del menú
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('brands-dropdown');
+            const icon = document.getElementById('brands-icon');
+            const nav = document.getElementById('submenu-nav');
+            const button = event.target.closest('button');
+
+            if (!dropdown.contains(event.target) && !button) {
+                dropdown.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                nav.classList.remove('nav-open');
+            }
+        });
+    </script>
 </body>
 </html>
