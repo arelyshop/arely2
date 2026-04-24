@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arelyshop - Tienda Online</title>
+    
+    <!-- Cargamos Tailwind CSS para los estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Cargamos Lucide para los iconos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Estilos personalizados mínimos para ocultar barras de scroll */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#f5f5f5] font-sans text-gray-800">
+
+    <!-- 1. TOP BAR (Solo Escritorio) -->
+    <div class="hidden lg:flex justify-between items-center bg-[#f8f8f8] border-b border-gray-200 text-[11px] px-8 py-1.5 text-gray-600">
+        <div class="flex gap-4">
+            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="truck" class="w-3.5 h-3.5"></i> Seguí tu compra</a>
+            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="wrench" class="w-3.5 h-3.5"></i> Servicio técnico</a>
+            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="store" class="w-3.5 h-3.5"></i> Sucursales</a>
+            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="phone" class="w-3.5 h-3.5"></i> Venta telefónica</a>
+            <a href="#" class="flex items-center gap-1 hover:text-[#4a148c]"><i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Centro de ayuda</a>
+        </div>
+        <div class="flex gap-4 font-semibold text-[#4a148c]">
+            <a href="#">ARELYSHOP créditos</a>
+        </div>
+    </div>
+
+    <!-- 2. HEADER PRINCIPAL -->
+    <header class="bg-[#2d0c5e] sticky top-0 z-50 shadow-md">
+        <div class="max-w-[1280px] mx-auto px-3 py-2.5 lg:px-4 lg:py-4 flex items-center justify-between gap-3 lg:gap-5">
+            
+            <!-- Menú Móvil -->
+            <button class="lg:hidden text-white hover:text-gray-200 shrink-0">
+                <i data-lucide="menu" class="w-7 h-7 stroke-[2]"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="/" class="flex items-center shrink-0">
+                <!-- Ícono compacto para móvil (invertido para resaltar en fondo oscuro) -->
+                <div class="lg:hidden w-8 h-8 rounded-full bg-white text-[#2d0c5e] flex items-center justify-center font-black italic text-lg shadow-sm">
+                    A
+                </div>
+                <!-- Logo completo para escritorio -->
+                <div class="hidden lg:flex items-center">
+                    <span class="text-xl lg:text-3xl font-black italic text-white tracking-tighter">
+                        ARELYSHOP
+                    </span>
+                    <span class="text-xl lg:text-3xl font-black text-[#d5006d] ml-0.5">&gt;</span>
+                </div>
+            </a>
+
+            <!-- Barra de Búsqueda unificada en una sola línea -->
+            <div class="flex-1 w-full relative">
+                <input 
+                    type="text" 
+                    placeholder="Fijate en Arelyshop" 
+                    class="w-full bg-white border border-transparent rounded-lg py-2 pl-9 pr-4 lg:py-2.5 lg:pl-10 lg:pr-10 focus:outline-none focus:ring-2 focus:ring-[#d5006d] transition-colors text-[13px] sm:text-sm shadow-sm placeholder-gray-500"
+                />
+                <i data-lucide="search" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 lg:w-5 lg:h-5 text-gray-500"></i>
+            </div>
+
+            <!-- Usuario y Carrito -->
+            <div class="flex items-center gap-4 lg:gap-6 shrink-0 text-white">
+                <div class="hidden lg:flex items-center gap-2 text-sm cursor-pointer hover:text-gray-200">
+                    <i data-lucide="user" class="w-5 h-5"></i> Mi cuenta
+                </div>
+                <button class="hover:text-gray-200 relative shrink-0">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 stroke-[2]"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. BARRA DE UBICACIÓN -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-[1280px] mx-auto px-4 py-2.5 flex items-center justify-between text-[13px] text-gray-600">
+            <div class="flex items-center">
+                <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-gray-500"></i>
+                Estás en <span class="text-[#3483fa] ml-1 font-medium cursor-pointer hover:underline">Capital Federal (1406)</span>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 lg:hidden"></i>
+        </div>
+    </div>
+
+    <!-- 4. NAVEGACIÓN DE PESTAÑAS -->
+    <nav class="bg-white border-b border-gray-200 overflow-x-auto hide-scrollbar">
+        <div class="max-w-[1280px] mx-auto px-4 flex items-center gap-6 lg:gap-8 whitespace-nowrap py-3 text-sm font-semibold">
+            <a href="#" class="hidden lg:flex items-center gap-2 text-gray-800 hover:text-[#4a148c]">
+                <i data-lucide="menu" class="w-4 h-4"></i> Categorías
+            </a>
+            <a href="#" class="text-[#4a148c] border-b-2 border-[#4a148c] pb-2 -mb-3">Más Vendidos</a>
+            <a href="#" class="text-gray-700 hover:text-[#4a148c]">Ofertas</a>
+            <a href="#" class="text-[#4a148c]">Especial Smart TV</a>
+            <a href="#" class="text-[#4a148c]">Promo MODO</a>
+            <a href="#" class="hidden lg:block text-gray-700 hover:text-[#4a148c]">Semana de Herramientas</a>
+            
+            <div class="hidden lg:flex items-center gap-6 ml-auto font-normal text-gray-600 text-[13px]">
+                <a href="#" class="hover:text-[#4a148c]">Simulá tu Crédito</a>
+                <a href="#" class="hover:text-[#4a148c]">Tiendas Oficiales</a>
+                <a href="#" class="hover:text-[#4a148c]">Vendé en Arelyshop</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 5. CONTENIDO PRINCIPAL -->
+    <main class="max-w-[1280px] mx-auto w-full pb-16">
+        
+        <!-- BANNER HERO (Promo) -->
+        <div class="w-full bg-[#1b3d2f] text-white relative overflow-hidden cursor-pointer mt-4 lg:mt-6 rounded-lg mx-4 lg:mx-0 shadow-sm" style="width: calc(100% - 2rem); margin-inline: auto;">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10"></div>
+            <img src="https://arelyshop.com/images/banner-1-showhome.webp" alt="Promo Banner" class="w-full h-[180px] lg:h-[300px] object-cover object-center"/>
+            <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-center px-6 lg:px-16 z-20">
+                <h2 class="text-3xl lg:text-5xl font-black italic tracking-tight mb-2 drop-shadow-md">
+                    ESTE MUNDIAL<br/>¡TENEMOS CON QUÉ!
+                </h2>
+                <p class="text-lg lg:text-2xl font-semibold mb-4 drop-shadow-md">Vivilo en 4k desde 55" a 98"</p>
+                <div class="flex items-center gap-4">
+                    <div class="bg-[#4fc3f7] text-[#004d40] px-4 py-2 rounded font-black text-sm lg:text-base inline-block">
+                        ENVÍO<br/>GRATIS*
+                    </div>
+                    <div class="bg-white text-[#4a148c] px-4 py-2 rounded font-black text-sm lg:text-base inline-block">
+                        HASTA<br/><span class="text-xl lg:text-3xl">12</span> SIN INTERÉS
+                    </div>
+                </div>
+                <p class="text-[10px] lg:text-xs mt-3 opacity-80">*EN SELECCIONADOS</p>
+            </div>
+            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                <div class="w-2 h-2 rounded-full bg-white"></div>
+                <div class="w-2 h-2 rounded-full bg-white/50"></div>
+                <div class="w-2 h-2 rounded-full bg-white/50"></div>
+                <div class="w-2 h-2 rounded-full bg-white/50"></div>
+            </div>
+        </div>
+
+        <!-- TARJETAS DE INFORMACIÓN -->
+        <div class="grid grid-cols-2 gap-0 bg-white border border-gray-200 mx-4 lg:mx-0 mt-4 rounded-lg shadow-sm">
+            <a href="#" class="flex items-center justify-center gap-3 lg:gap-4 p-4 lg:p-6 border-r border-gray-200 hover:bg-gray-50 transition-colors">
+                <i data-lucide="credit-card" class="w-8 h-8 lg:w-10 lg:h-10 text-[#a98cbd]"></i>
+                <div>
+                    <p class="text-sm lg:text-base font-semibold text-gray-800">Medios de pago</p>
+                    <p class="text-xs lg:text-sm text-[#3483fa] mt-0.5">Ver promociones</p>
+                </div>
+            </a>
+            <a href="#" class="flex items-center justify-center gap-3 lg:gap-4 p-4 lg:p-6 hover:bg-gray-50 transition-colors">
+                <i data-lucide="circle-dollar-sign" class="w-8 h-8 lg:w-10 lg:h-10 text-[#a98cbd]"></i>
+                <div>
+                    <p class="text-sm lg:text-base font-semibold text-gray-800">Arelyshop Créditos</p>
+                    <p class="text-xs lg:text-sm text-[#3483fa] mt-0.5">Simulá tu Crédito</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- GRILLA DE CATEGORÍAS -->
+        <div class="bg-white mx-4 lg:mx-0 mt-4 p-4 lg:p-8 rounded-lg shadow-sm">
+            <div class="grid grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-2 lg:gap-8">
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="laptop" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Notebooks</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="smartphone" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Celulares</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="package" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Lavado</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="package" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Heladeras Freezers</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="printer" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Impresoras</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="tablet" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Tablets</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="tv" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Televisores</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="bed" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Colchones y Sommiers</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="sofa" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Muebles</span>
+                </a>
+                <a href="#" class="flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-2 lg:mb-3 group-hover:bg-[#f3e5f5] transition-colors border border-gray-100">
+                        <i data-lucide="wrench" class="w-8 h-8 text-gray-700"></i>
+                    </div>
+                    <span class="text-[11px] lg:text-sm text-gray-700 font-medium leading-tight px-1 group-hover:text-[#4a148c]">Herramientas Eléctricas</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: CATÁLOGO Y FILTROS -->
+        <div class="mt-8 px-4 lg:px-0">
+            <h2 class="text-xl lg:text-2xl font-bold mb-6 text-gray-900">Ofertas únicas</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
+                
+                <!-- SIDEBAR DE FILTROS (Desktop) -->
+                <aside class="hidden lg:block w-64 shrink-0">
+                    <div class="mb-6">
+                        <p class="text-sm font-semibold text-gray-800 mb-4">39 resultados</p>
+                        <div class="flex items-center gap-2 mb-6">
+                            <span class="text-xs font-semibold text-gray-500 tracking-wider">ORDENAR POR:</span>
+                            <select class="text-sm font-semibold text-gray-800 bg-transparent outline-none cursor-pointer">
+                                <option>Más relevantes</option>
+                                <option>Menor precio</option>
+                                <option>Mayor precio</option>
+                            </select>
+                        </div>
+
+                        <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 mb-6">
+                            <!-- Toggle Cuotas -->
+                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                                <span class="text-sm text-gray-700">Cuotas sin interés</span>
+                                <div class="w-10 h-5 bg-gray-200 rounded-full relative cursor-pointer hover:bg-gray-300 transition-colors">
+                                    <div class="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                                </div>
+                            </div>
+                            <!-- Toggle Envío gratis -->
+                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                                <span class="text-sm text-gray-700">Envío gratis</span>
+                                <div class="w-10 h-5 bg-gray-200 rounded-full relative cursor-pointer hover:bg-gray-300 transition-colors">
+                                    <div class="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                                </div>
+                            </div>
+                            <!-- Toggle Llega hoy -->
+                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                                <span class="text-sm text-gray-700">Llega hoy</span>
+                                <div class="w-10 h-5 bg-gray-200 rounded-full relative cursor-pointer hover:bg-gray-300 transition-colors">
+                                    <div class="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                                </div>
+                            </div>
+                            <!-- Toggle Llega mañana -->
+                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                                <span class="text-sm text-gray-700">Llega mañana</span>
+                                <div class="w-10 h-5 bg-gray-200 rounded-full relative cursor-pointer hover:bg-gray-300 transition-colors">
+                                    <div class="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-gray-500 tracking-wider">FILTROS APLICADOS</span>
+                            <button class="text-sm text-[#3483fa] hover:underline">Borrar</button>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="text-sm font-bold text-gray-800 mb-3">FORMAS DE PAGO</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-[#4a148c] focus:ring-[#4a148c]" />
+                                    <span class="text-sm text-gray-700">6 cuotas sin interés (15)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-[#4a148c] focus:ring-[#4a148c]" />
+                                    <span class="text-sm text-gray-700">3 cuotas sin interés (13)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- GRILLA DE PRODUCTOS -->
+                <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                    
+                    <!-- Producto 1 -->
+                    <div class="bg-white rounded-lg p-4 border border-gray-200 hover:shadow-lg transition-shadow relative flex flex-col cursor-pointer group">
+                        <div class="w-full h-48 lg:h-56 mb-4 p-2 flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=300&q=80" alt="Soldadora" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h3 class="text-sm text-gray-700 font-medium leading-snug mb-1 line-clamp-2">Soldadora Inverter Lusqtoff Megairon100-8 Mascara...</h3>
+                            <p class="text-[11px] text-gray-500 mb-3">Vendido por <span class="font-semibold text-gray-800">PideWeb</span><span class="text-[#4a148c] ml-1 font-bold">&gt;</span></p>
+                            <div class="mt-auto">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-xs text-gray-400 line-through">$244.955,20</span>
+                                    <span class="text-[#d5006d] text-xs font-bold bg-[#fce4ec] px-1.5 py-0.5 rounded">46% OFF</span>
+                                </div>
+                                <p class="text-2xl font-bold text-gray-900 mb-2">$132.669</p>
+                                <p class="text-xs text-gray-400 mb-3">Precio s/imp. inc. $120.000,44</p>
+                                <div class="flex flex-wrap items-center gap-2 text-xs font-bold mb-4">
+                                    <span class="text-[#00a650]">Llega GRATIS mañana</span>
+                                </div>
+                            </div>
+                            <label class="flex items-center gap-2 mt-2 pt-3 border-t border-gray-100 cursor-pointer w-max">
+                                <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-[#4a148c]" />
+                                <span class="text-sm text-gray-600 font-medium">Comparar</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2 -->
+                    <div class="bg-white rounded-lg p-4 border border-gray-200 hover:shadow-lg transition-shadow relative flex flex-col cursor-pointer group">
+                        <div class="absolute top-4 left-4 z-10 flex flex-col gap-1">
+                            <span class="bg-[#4a148c] text-white text-[10px] font-bold px-2 py-1 rounded">3 SIN INTERÉS</span>
+                        </div>
+                        <div class="w-full h-48 lg:h-56 mb-4 p-2 flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=300&q=80" alt="Amoladora" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h3 class="text-sm text-gray-700 font-medium leading-snug mb-1 line-clamp-2">Amoladora Angular Black & Decker G720N-AR</h3>
+                            <p class="text-[11px] text-gray-500 mb-3">Vendido por <span class="font-semibold text-gray-800">Arelyshop</span><span class="text-[#4a148c] ml-1 font-bold">&gt;</span></p>
+                            <div class="mt-auto">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-xs text-gray-400 line-through">$74.999</span>
+                                    <span class="text-[#d5006d] text-xs font-bold bg-[#fce4ec] px-1.5 py-0.5 rounded">20% OFF</span>
+                                </div>
+                                <p class="text-2xl font-bold text-gray-900 mb-2">$59.999</p>
+                                <p class="text-xs text-gray-400 mb-3">Precio s/imp. inc. $49.585,05</p>
+                                <div class="flex flex-wrap items-center gap-2 text-xs font-bold mb-4">
+                                    <span class="text-[#00a650]">Llega GRATIS hoy</span>
+                                    <span class="text-gray-300">|</span>
+                                    <span class="text-gray-600">¡Retiralo YA!</span>
+                                </div>
+                            </div>
+                            <label class="flex items-center gap-2 mt-2 pt-3 border-t border-gray-100 cursor-pointer w-max">
+                                <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-[#4a148c]" />
+                                <span class="text-sm text-gray-600 font-medium">Comparar</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3 -->
+                    <div class="bg-white rounded-lg p-4 border border-gray-200 hover:shadow-lg transition-shadow relative flex flex-col cursor-pointer group">
+                        <div class="w-full h-48 lg:h-56 mb-4 p-2 flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?auto=format&fit=crop&w=300&q=80" alt="Set Herramientas" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h3 class="text-sm text-gray-700 font-medium leading-snug mb-1 line-clamp-2">Set de Herramientas Manuales Black & Decker 152 Pzs...</h3>
+                            <p class="text-[11px] text-gray-500 mb-3">Vendido por <span class="font-semibold text-gray-800">Arelyshop</span><span class="text-[#4a148c] ml-1 font-bold">&gt;</span></p>
+                            <div class="mt-auto">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-xs text-gray-400 line-through">$99.999</span>
+                                    <span class="text-[#d5006d] text-xs font-bold bg-[#fce4ec] px-1.5 py-0.5 rounded">20% OFF</span>
+                                </div>
+                                <p class="text-2xl font-bold text-gray-900 mb-2">$79.999</p>
+                                <p class="text-xs text-gray-400 mb-3">Precio s/imp. inc. $68.114,85</p>
+                                <div class="flex flex-wrap items-center gap-2 text-xs font-bold mb-4">
+                                    <span class="text-[#00a650]">Llega GRATIS hoy</span>
+                                    <span class="text-gray-300">|</span>
+                                    <span class="text-gray-600">Retiralo Mañana</span>
+                                </div>
+                            </div>
+                            <label class="flex items-center gap-2 mt-2 pt-3 border-t border-gray-100 cursor-pointer w-max">
+                                <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-[#4a148c]" />
+                                <span class="text-sm text-gray-600 font-medium">Comparar</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 6. FOOTER -->
+    <footer class="bg-[#2d0c5e] text-white pt-12 pb-6 mt-8 border-t-[6px] border-[#d5006d]">
+        <div class="max-w-[1280px] mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                
+                <!-- Columna 1: Marca y Redes -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <span class="italic tracking-tighter">ARELYSHOP</span>
+                        <span class="text-[#d5006d] ml-0.5 font-black">&gt;</span>
+                    </h3>
+                    <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+                        Tu tienda online de confianza. Encontrá la mejor tecnología, electrodomésticos y muebles al mejor precio del mercado.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#d5006d] transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#d5006d] transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#d5006d] transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Atención al Cliente -->
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-100 tracking-wide text-sm">ATENCIÓN AL CLIENTE</h4>
+                    <ul class="text-sm text-gray-300 space-y-3">
+                        <li><a href="#" class="hover:text-white flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Centro de Ayuda</a></li>
+                        <li><a href="#" class="hover:text-white flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Sucursales</a></li>
+                        <li><a href="#" class="hover:text-white flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Botón de Arrepentimiento</a></li>
+                        <li><a href="#" class="hover:text-white flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Servicio Técnico</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Institucional -->
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-100 tracking-wide text-sm">ACERCA DE ARELYSHOP</h4>
+                    <ul class="text-sm text-gray-300 space-y-3">
+                        <li><a href="#" class="hover:text-white flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Nuestra Empresa</a></li>
+                        <li><a href="#" class="hover:text-white flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Trabajá con nosotros</a></li>
+                        <li><a href="#" class="hover:text-white flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Políticas de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Medios de Pago -->
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-100 tracking-wide text-sm">MEDIOS DE PAGO</h4>
+                    <div class="grid grid-cols-4 gap-2 mb-4">
+                        <div class="bg-white rounded p-1.5 flex items-center justify-center"><i data-lucide="credit-card" class="w-full h-auto text-[#2d0c5e]"></i></div>
+                        <div class="bg-white rounded p-1.5 flex items-center justify-center"><i data-lucide="wallet" class="w-full h-auto text-[#2d0c5e]"></i></div>
+                        <div class="bg-white rounded p-1.5 flex items-center justify-center"><i data-lucide="banknote" class="w-full h-auto text-[#2d0c5e]"></i></div>
+                        <div class="bg-white rounded p-1.5 flex items-center justify-center"><i data-lucide="circle-dollar-sign" class="w-full h-auto text-[#2d0c5e]"></i></div>
+                    </div>
+                    <p class="text-xs text-gray-400">Conocé todas las promociones bancarias disponibles.</p>
+                </div>
+            </div>
+
+            <!-- Copyright inferior -->
+            <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400">
+                <p>&copy; 2026 Arelyshop. Todos los derechos reservados.</p>
+                <p class="mt-3 md:mt-0 flex items-center gap-1 hover:text-white cursor-pointer transition-colors">
+                    Defensa de las y los consumidores <i data-lucide="shield-check" class="w-4 h-4 ml-1"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inicializar iconos de Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
