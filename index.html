@@ -142,7 +142,7 @@
 
                 <!-- 1. Categorías con Desplegable -->
                 <div class="h-full flex items-center" onmouseenter="openMenu('categories', this)" onmouseleave="closeMenu('categories')">
-                    <button class="flex items-center gap-1.5 text-gray-900 hover:text-[#2d0c5e] transition-colors font-semibold py-1 focus:outline-none cursor-default">
+                    <button onclick="handleMenuClick('categories', this, event)" class="flex items-center gap-1.5 text-gray-900 hover:text-[#2d0c5e] transition-colors font-semibold py-1 focus:outline-none cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM9 9H5V5h4v4zm11-6h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 6h-4V5h4v4zm-9 4H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1zm-1 6H5v-4h4v4zm8-6c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z"></path></svg>
                         Categorías
                         <svg id="categories-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5 transition-transform duration-300" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
@@ -165,7 +165,7 @@
 
                 <!-- 2. Marcas con Desplegable -->
                 <div class="h-full flex items-center" onmouseenter="openMenu('brands', this)" onmouseleave="closeMenu('brands')">
-                    <button class="flex items-center gap-1 text-gray-700 hover:text-[#2d0c5e] transition-colors font-semibold py-1 focus:outline-none cursor-default">
+                    <button onclick="handleMenuClick('brands', this, event)" class="flex items-center gap-1 text-gray-700 hover:text-[#2d0c5e] transition-colors font-semibold py-1 focus:outline-none cursor-pointer">
                         Marcas
                         <svg id="brands-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5 transition-transform duration-300" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                     </button>
@@ -335,8 +335,19 @@
         lucide.createIcons();
 
         let menuTimeouts = {};
+        let isTouchDevice = false;
+
+        // Detectar si el usuario está en un móvil/tablet táctil
+        window.addEventListener('touchstart', function() {
+            isTouchDevice = true;
+        }, { passive: true });
 
         function openMenu(menuId, element) {
+            if (isTouchDevice) return; // Si es táctil, ignoramos el hover
+            openMenuLogic(menuId, element);
+        }
+
+        function openMenuLogic(menuId, element) {
             clearTimeout(menuTimeouts[menuId]);
             
             // Cerrar el otro menú inmediatamente para evitar sobreposiciones
@@ -347,7 +358,7 @@
             const icon = document.getElementById(menuId + '-icon');
             
             if (dropdown && dropdown.classList.contains('hidden')) {
-                const button = element.querySelector('button');
+                const button = element.querySelector('button') || element;
                 const rect = button.getBoundingClientRect();
                 
                 let leftPos = rect.left;
@@ -366,11 +377,27 @@
             }
         }
 
+        function handleMenuClick(menuId, button, event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const dropdown = document.getElementById(menuId + '-dropdown');
+            const isHidden = dropdown.classList.contains('hidden');
+            
+            if (!isHidden) {
+                closeMenuDirectly(menuId);
+            } else {
+                openMenuLogic(menuId, button.parentElement);
+            }
+        }
+
         function keepMenuOpen(menuId) {
+            if (isTouchDevice) return;
             clearTimeout(menuTimeouts[menuId]);
         }
 
         function closeMenu(menuId) {
+            if (isTouchDevice) return;
             // Retraso de 150ms para permitir al usuario mover el ratón hacia el menú
             menuTimeouts[menuId] = setTimeout(() => {
                 closeMenuDirectly(menuId);
@@ -396,6 +423,14 @@
         window.addEventListener('scroll', closeAllDropdowns);
         document.getElementById('submenu-nav').addEventListener('scroll', closeAllDropdowns);
         window.addEventListener('resize', closeAllDropdowns);
+
+        // Prevenir que dar clics dentro del menú lo cierre accidentalmente en móviles
+        document.getElementById('categories-dropdown').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        document.getElementById('brands-dropdown').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
 
     </script>
 </body>
