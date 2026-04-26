@@ -37,7 +37,7 @@
         html { scroll-behavior: smooth; }
 
         /* Animación para el desplegable */
-        #brands-dropdown {
+        #brands-dropdown, #categories-dropdown {
             transition: opacity 0.2s ease-out, transform 0.2s ease-out;
         }
     </style>
@@ -134,11 +134,34 @@
         <nav id="submenu-nav" class="bg-white border-b border-gray-200 overflow-x-auto hide-scrollbar shadow-sm relative transition-all">
             <div class="max-w-[1280px] mx-auto px-4 lg:px-8 flex items-center gap-6 lg:gap-8 whitespace-nowrap py-3 text-[14px] font-medium text-gray-700 w-max lg:w-auto">
                 
-                <!-- 1. Categorías -->
-                <a href="#" class="flex items-center gap-2 text-gray-900 hover:text-[#2d0c5e] transition-colors font-semibold">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5" fill="currentColor"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-                    Categorías
+                <!-- 0. Inicio -->
+                <a href="/" class="flex items-center gap-1.5 text-gray-900 hover:text-[#2d0c5e] transition-colors font-semibold">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5" fill="currentColor"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+                    Inicio
                 </a>
+
+                <!-- 1. Categorías con Desplegable -->
+                <div class="h-full flex items-center">
+                    <button onclick="toggleCategories(event)" class="flex items-center gap-1.5 text-gray-900 hover:text-[#2d0c5e] transition-colors font-semibold py-1 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM9 9H5V5h4v4zm11-6h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 6h-4V5h4v4zm-9 4H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1zm-1 6H5v-4h4v4zm8-6c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z"></path></svg>
+                        Categorías
+                        <svg id="categories-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5 transition-transform duration-300" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                    </button>
+                    
+                    <!-- Menú Desplegable de Categorías -->
+                    <div id="categories-dropdown" class="fixed w-64 bg-white border border-gray-100 shadow-xl rounded-b-xl z-[100] overflow-hidden py-2 hidden">
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Cables & Conectores</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Cargadores</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Herramientas</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Hogar</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Hogar Inteligente</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Hubs & Adaptadores</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Mochilas & Fundas</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Organizadores & Neceseres</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Powerbanks</a>
+                        <a href="#" class="block px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-[#f3e5f5] hover:text-[#2d0c5e] transition-colors border-l-4 border-transparent hover:border-[#d5006d]">Teclados & Mouse</a>
+                    </div>
+                </div>
 
                 <!-- 2. Marcas con Desplegable por Clic -->
                 <div class="h-full flex items-center">
@@ -321,9 +344,55 @@
             }
         }
 
+        // Función para cerrar el menú de categorías si está abierto
+        function closeCategoriesDropdown() {
+            const dropdown = document.getElementById('categories-dropdown');
+            const icon = document.getElementById('categories-icon');
+            if (!dropdown.classList.contains('hidden')) {
+                dropdown.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Función para cerrar todos los menús desplegables
+        function closeAllDropdowns() {
+            closeBrandsDropdown();
+            closeCategoriesDropdown();
+        }
+
+        // Lógica para el menú desplegable de Categorías
+        function toggleCategories(event) {
+            event.stopPropagation();
+            closeBrandsDropdown(); // Cerramos Marcas si está abierto
+            
+            const dropdown = document.getElementById('categories-dropdown');
+            const icon = document.getElementById('categories-icon');
+            const button = event.currentTarget;
+
+            const isOpen = !dropdown.classList.contains('hidden');
+
+            if (isOpen) {
+                closeCategoriesDropdown();
+            } else {
+                const rect = button.getBoundingClientRect();
+                let leftPos = rect.left;
+                if (leftPos + 256 > window.innerWidth) { // 256px es el ancho del menú w-64
+                    leftPos = window.innerWidth - 256 - 16;
+                }
+
+                dropdown.style.top = `${rect.bottom + 4}px`;
+                dropdown.style.left = `${leftPos}px`;
+                
+                dropdown.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            }
+        }
+
         // Lógica actualizada para el menú desplegable de Marcas
         function toggleBrands(event) {
             event.stopPropagation();
+            closeCategoriesDropdown(); // Cerramos Categorías si está abierto
+            
             const dropdown = document.getElementById('brands-dropdown');
             const icon = document.getElementById('brands-icon');
             const button = event.currentTarget;
@@ -355,22 +424,25 @@
         
         // 1. Al hacer clic fuera
         document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('brands-dropdown');
-            const button = event.target.closest('button[onclick="toggleBrands(event)"]');
+            const brandsDropdown = document.getElementById('brands-dropdown');
+            const categoriesDropdown = document.getElementById('categories-dropdown');
+            const brandsButton = event.target.closest('button[onclick="toggleBrands(event)"]');
+            const categoriesButton = event.target.closest('button[onclick="toggleCategories(event)"]');
             
-            if (!dropdown.contains(event.target) && !button) {
-                closeBrandsDropdown();
+            if (!brandsDropdown.contains(event.target) && !brandsButton &&
+                !categoriesDropdown.contains(event.target) && !categoriesButton) {
+                closeAllDropdowns();
             }
         });
 
         // 2. Al hacer scroll en la página
-        window.addEventListener('scroll', closeBrandsDropdown);
+        window.addEventListener('scroll', closeAllDropdowns);
         
         // 3. Al hacer scroll horizontal en el submenú
-        document.getElementById('submenu-nav').addEventListener('scroll', closeBrandsDropdown);
+        document.getElementById('submenu-nav').addEventListener('scroll', closeAllDropdowns);
         
         // 4. Al redimensionar la pantalla
-        window.addEventListener('resize', closeBrandsDropdown);
+        window.addEventListener('resize', closeAllDropdowns);
 
     </script>
 </body>
